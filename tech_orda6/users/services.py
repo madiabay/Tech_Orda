@@ -3,8 +3,8 @@
 """
 
 from typing import Optional
-from .models import User
-from .repositories import UserRepositories
+from users.models import User
+from users.repositories import UserRepositories
 
 
 class UserServices:

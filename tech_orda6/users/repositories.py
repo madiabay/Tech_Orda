@@ -3,7 +3,7 @@
 """
 
 from typing import List, Optional
-from .models import User
+from users.models import User
 
 
 class UserRepositories:

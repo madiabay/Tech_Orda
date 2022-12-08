@@ -3,8 +3,8 @@
 """
 
 from typing import Optional
-from .services import UserServices
-from .models import User
+from users.services import UserServices
+from users.models import User
 
 class UserHandlers:
     services: UserServices
