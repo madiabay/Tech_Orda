@@ -3,6 +3,7 @@
 """
 
 from typing import Optional
+from users.exceptions import PasswordIsTooShort
 from users.services import UserServices
 from users.models import User
 
@@ -37,8 +38,7 @@ class UserHandlers:
             return False
         
         if len(password) < 8:
-            print('Password is too short')
-            return False
+            raise PasswordIsTooShort
         
         return True
     

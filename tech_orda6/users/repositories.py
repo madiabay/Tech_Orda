@@ -2,7 +2,8 @@
 Этот файл входит в зону Entities или можно назвать Repositories.
 """
 
-from typing import List, Optional
+from typing import List
+from .exceptions import ChildrenNotFound
 from users.models import User
 
 
@@ -15,17 +16,15 @@ class UserRepositories:
 
         self.users.append(user)
     
-    def get_user(self, username: str, password: str) -> Optional[User]:
+    def get_user(self, username: str, password: str) -> User:
         user = next(
             (u for u in self.users if username == u.username and u.check_password(password)), 
             None
         )
 
         if not user:
-            print('User not found')
-            return
+            raise ChildrenNotFound
 
-        print('SUCCESS')
         return user
     
     def change_password(self, correct_user: User, password: str) -> None:

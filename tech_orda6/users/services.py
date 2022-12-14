@@ -3,6 +3,7 @@
 """
 
 from typing import Optional
+from .exceptions import ChildrenNotFound
 from users.models import User
 from users.repositories import UserRepositories
 
@@ -18,7 +19,10 @@ class UserServices:
         self._send_email_verification(username)
     
     def get_user(self, username: str, password: str) -> Optional[User]:
-        return self.repositories.get_user(username=username, password=password)
+        try:
+            self.repositories.get_user(username=username, password=password)
+        except ChildrenNotFound:
+            print('User not found -> XAXAAXAAXAAX')
     
     @staticmethod
     def _send_email_verification(email):
