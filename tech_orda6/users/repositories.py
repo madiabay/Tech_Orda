@@ -2,10 +2,21 @@
 Этот файл входит в зону Entities или можно назвать Repositories.
 """
 
-from typing import List
+from typing import List, Protocol
 from .exceptions import ChildrenNotFound
 from users.models import User
 
+
+class UserRepositoriesInterface(Protocol):
+    
+    def create_user(self):
+        raise NotImplementedError
+    
+    def get_user(self):
+        raise NotImplementedError
+    
+    def change_password(self):
+        raise NotImplementedError
 
 class UserRepositories:
     users: List[User] = []
@@ -24,7 +35,8 @@ class UserRepositories:
 
         if not user:
             raise ChildrenNotFound
-
+        
+        print('SUCCESS')
         return user
     
     def change_password(self, correct_user: User, password: str) -> None:
