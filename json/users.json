@@ -1,0 +1,43 @@
+[
+    {
+        "id": 1,
+        "username": "madi",
+        "password": "123",
+        "wallets": [
+            {
+                "id": 1,
+                "cash": 1000
+            },
+            {
+                "id": 14,
+                "cash": 50000000
+            },
+            {
+                "id": 10,
+                "cash": 4000
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "username": "adlet",
+        "password": "bok",
+        "wallets": [
+            {
+                "id": 2,
+                "cash": 5097
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "username": "kayrat",
+        "password": "brawlstars",
+        "wallets": [
+            {
+                "id": 3,
+                "cash": 487
+            }
+        ]
+    }
+]
