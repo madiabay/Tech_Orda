@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3rd packages
+    'rest_framework',
+
+    # local
     'blogs.apps.BlogsConfig',
 ]
 
