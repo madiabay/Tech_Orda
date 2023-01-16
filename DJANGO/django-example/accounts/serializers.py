@@ -12,7 +12,7 @@ class WalletModelSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class _WalletModelSerializer(serializers.ModelSerializer):
+class _AccountWalletModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Wallet
@@ -24,7 +24,7 @@ class _WalletModelSerializer(serializers.ModelSerializer):
 
 
 class AccountModelSerializer(serializers.ModelSerializer):
-    wallets = _WalletModelSerializer(read_only=True, many=True)
+    wallets = _AccountWalletModelSerializer(read_only=True, many=True)
 
     # wallets = serializers.PrimaryKeyRelatedField(read_only=True, many=True)
 
