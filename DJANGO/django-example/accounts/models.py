@@ -1,4 +1,6 @@
 from django.db import models
+from accounts import constants
+
 
 # Create your models here.
 
@@ -21,7 +23,11 @@ class Wallet(models.Model):
         related_name='wallets'
         )
     amount = models.DecimalField(max_digits=14, decimal_places=2)
-    amount_currency = models.CharField(max_length=3) # KZT
+    amount_currency = models.CharField(
+        max_length=3,
+        choices=constants.AmountCurrencyChoices.choices,
+        default=constants.AmountCurrencyChoices.KZT
+        ) # KZT
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

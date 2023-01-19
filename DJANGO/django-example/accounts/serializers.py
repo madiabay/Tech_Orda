@@ -17,14 +17,16 @@ class _AccountWalletModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Wallet
         fields = (
-            'id',
             'amount',
             'amount_currency',
         )
 
 
 class AccountModelSerializer(serializers.ModelSerializer):
-    wallets = _AccountWalletModelSerializer(read_only=True, many=True)
+    avg_amount = serializers.DecimalField(read_only=True, max_digits=14, decimal_places=2)
+    custom_amount = serializers.DecimalField(read_only=True, max_digits=14, decimal_places=2)
+
+    wallets = _AccountWalletModelSerializer(write_only=True, many=True)
 
     # wallets = serializers.PrimaryKeyRelatedField(read_only=True, many=True)
 
