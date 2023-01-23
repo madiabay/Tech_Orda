@@ -7,6 +7,7 @@ from accounts import constants
 class Account(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='accounts/', blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -39,8 +39,8 @@ class AccountViewSet(ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_class = filters.AccountFilter
 
-    def perform_create(self, serializer: serializers.AccountModelSerializer):
-        self.account_services.create_account(data=serializer.validated_data)
+    # def perform_create(self, serializer: serializers.AccountModelSerializer):
+    #     self.account_services.create_account(data=serializer.validated_data)
 
 
 # V2
