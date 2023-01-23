@@ -44,22 +44,23 @@ class _AccountWalletModelSerializer(serializers.ModelSerializer):
         )
 
 
+# V1
 class AccountModelSerializer(serializers.ModelSerializer):
+    
+    wallets = _AccountWalletModelSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = models.Account
+        fields = "__all__"
+
+
+# V2
+class AccountModelSerializerV2(serializers.ModelSerializer):
     avg_amount = serializers.DecimalField(read_only=True, max_digits=14, decimal_places=2)
     custom_amount = serializers.DecimalField(read_only=True, max_digits=14, decimal_places=2)
 
     wallets = _AccountWalletModelSerializer(write_only=True, many=True)
 
-    # wallets = serializers.PrimaryKeyRelatedField(read_only=True, many=True)
-
     class Meta:
         model = models.Account
-        fields = "__all__" # (
-        #     'id',
-        #     'first_name',
-        #     'last_name',
-        #     'created_at',
-        #     'updated_at',
-        #     'wallets',
-        # )
-
+        fields = "__all__"
