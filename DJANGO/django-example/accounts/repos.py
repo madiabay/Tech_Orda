@@ -55,7 +55,7 @@ class AccountReposV1:
     
     @staticmethod
     def create_account(data: OrderedDict) -> None:
-        wallets = data.pop('wallets') # [w1(amoun, dwed), w2]
+        wallets = data.pop('wallets')
         account = models.Account.objects.create(**data)
 
         models.Wallet.objects.bulk_create([

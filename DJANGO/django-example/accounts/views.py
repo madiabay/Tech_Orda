@@ -31,6 +31,7 @@ class WalletViewSet(ModelViewSet):
 
 class AccountViewSet(ModelViewSet):
     account_services: services.AccountServicesInterface = services.AccountServicesV1()
+    
     queryset = account_services.get_accounts()
     serializer_class = serializers.AccountModelSerializer
 
