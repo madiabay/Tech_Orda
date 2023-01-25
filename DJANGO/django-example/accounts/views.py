@@ -1,3 +1,4 @@
+from rest_framework import pagination
 from rest_framework.viewsets import ModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -65,6 +66,9 @@ class AccountViewSetV2(ModelViewSet):
     
     filter_backends = (DjangoFilterBackend,)
     filterset_class = filters.AccountFilter
+
+    # pagination_class = pagination.LimitOffsetPagination
+    # pagination_class = pagination.PageNumberPagination
 
     def get_queryset(self):
         return self.account_services.get_accounts(action=self.action)

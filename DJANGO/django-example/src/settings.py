@@ -139,6 +139,11 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'src.custom_pagination.CustomCursorPagination',
+    'PAGE_SIZE': 1
+}
+
 INTERNAL_IPS = [
     "127.0.0.1",
 ]

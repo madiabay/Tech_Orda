@@ -47,15 +47,15 @@ class _AccountWalletModelSerializer(serializers.ModelSerializer):
 
 class RetrieveAccountModelSerializer(serializers.ModelSerializer):
 
-    avg_amount = serializers.DecimalField(read_only=True, max_digits=14, decimal_places=2)
-    custom_amount = serializers.DecimalField(read_only=True, max_digits=14, decimal_places=2)
+    # avg_amount = serializers.DecimalField(read_only=True, max_digits=14, decimal_places=2)
+    # custom_amount = serializers.DecimalField(read_only=True, max_digits=14, decimal_places=2)
 
     
-    wallets = _AccountWalletModelSerializer(read_only=True, many=True)
+    # wallets = _AccountWalletModelSerializer(read_only=True, many=True)
 
     class Meta:
         model = models.Account
-        fields = "__all__"
+        fields = ('id', 'first_name')
 
 
 class CreateAccountModelSerializer(serializers.ModelSerializer):

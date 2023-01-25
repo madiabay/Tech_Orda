@@ -5,7 +5,7 @@ from accounts import views
 
 
 router = routers.DefaultRouter()
-router.register('wallets', views.WalletViewSet, basename='wallets-v2')
+router.register('wallets', views.WalletViewSet_2, basename='wallets-v2')
 router.register('accounts', views.AccountViewSetV2, basename='accounts-v2')
 
 urlpatterns = [
