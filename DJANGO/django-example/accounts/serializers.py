@@ -44,8 +44,12 @@ class _AccountWalletModelSerializer(serializers.ModelSerializer):
         )
 
 
-# V1
-class AccountModelSerializer(serializers.ModelSerializer):
+
+class RetrieveAccountModelSerializer(serializers.ModelSerializer):
+
+    avg_amount = serializers.DecimalField(read_only=True, max_digits=14, decimal_places=2)
+    custom_amount = serializers.DecimalField(read_only=True, max_digits=14, decimal_places=2)
+
     
     wallets = _AccountWalletModelSerializer(read_only=True, many=True)
 
@@ -54,10 +58,7 @@ class AccountModelSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-# V2
-class AccountModelSerializerV2(serializers.ModelSerializer):
-    avg_amount = serializers.DecimalField(read_only=True, max_digits=14, decimal_places=2)
-    custom_amount = serializers.DecimalField(read_only=True, max_digits=14, decimal_places=2)
+class CreateAccountModelSerializer(serializers.ModelSerializer):
 
     wallets = _AccountWalletModelSerializer(write_only=True, many=True)
 

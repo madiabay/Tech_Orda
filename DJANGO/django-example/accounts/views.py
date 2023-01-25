@@ -33,25 +33,50 @@ class WalletViewSet(ModelViewSet):
 class AccountViewSet(ModelViewSet):
     account_services: services.AccountServicesInterface = services.AccountServicesV1()
     
-    queryset = account_services.get_accounts()
-    serializer_class = serializers.AccountModelSerializer
+    # queryset = account_services.get_accounts()
+    serializer_class = serializers.RetrieveAccountModelSerializer
 
     filter_backends = (DjangoFilterBackend,)
     filterset_class = filters.AccountFilter
+
+    def get_queryset(self):
+        return self.account_services.get_accounts(self.action)
 
     # def perform_create(self, serializer: serializers.AccountModelSerializer):
     #     self.account_services.create_account(data=serializer.validated_data)
 
 
-# V2
+# # V2
+# class AccountViewSetV2(ModelViewSet):
+#     account_services: services.AccountServicesInterface = services.AccountServicesV1()
+    
+#     queryset = account_services.get_accounts()
+#     serializer_class = serializers.AccountModelSerializerV2
+
+#     filter_backends = (DjangoFilterBackend,)
+#     filterset_class = filters.AccountFilter
+
+#     def perform_create(self, serializer: serializers.AccountModelSerializer):
+#         self.account_services.create_account(data=serializer.validated_data)
+
+
 class AccountViewSetV2(ModelViewSet):
     account_services: services.AccountServicesInterface = services.AccountServicesV1()
     
-    queryset = account_services.get_accounts()
-    serializer_class = serializers.AccountModelSerializerV2
-
     filter_backends = (DjangoFilterBackend,)
     filterset_class = filters.AccountFilter
 
-    def perform_create(self, serializer: serializers.AccountModelSerializer):
+    def get_queryset(self):
+        return self.account_services.get_accounts(action=self.action)
+
+    def get_serializer_class(self):
+
+        print(f'{self.action=}')
+
+        if self.action in ('list', 'retrieve'):
+            return serializers.RetrieveAccountModelSerializer
+        
+        return serializers.CreateAccountModelSerializer
+
+    def perform_create(self, serializer: serializers.CreateAccountModelSerializer):
         self.account_services.create_account(data=serializer.validated_data)

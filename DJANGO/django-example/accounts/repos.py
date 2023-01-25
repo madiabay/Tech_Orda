@@ -9,7 +9,7 @@ from accounts import models, constants
 class AccountReposInterface(Protocol):
 
     @staticmethod
-    def get_accounts() -> QuerySet[models.Account]: ...
+    def get_accounts(action: str) -> QuerySet[models.Account]: ...
 
     @staticmethod
     def create_account(data: OrderedDict) -> None: ...
@@ -18,8 +18,13 @@ class AccountReposInterface(Protocol):
 class AccountReposV1:
 
     @staticmethod
-    def get_accounts() -> QuerySet[models.Account]:
-        return models.Account.objects.prefetch_related(
+    def get_accounts(action: str) -> QuerySet[models.Account]:
+        accounts = models.Account.objects.all()
+
+        if action not in ('list', 'retrieve'):
+            return accounts
+
+        return accounts.prefetch_related(
             'wallets'
             ).annotate(
                 avg_amount=Avg(
